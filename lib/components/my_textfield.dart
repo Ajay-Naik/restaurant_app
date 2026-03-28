@@ -20,15 +20,9 @@ class MyTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-    
-        // decoration: BoxDecoration(
-          // color: const Color.fromARGB(255, 43, 53, 88),
-          // borderRadius: BorderRadius.circular(30),
-        // ),
         child: TextField(
           controller: controller,
           obscureText: obscureText,
-          // style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.grey.shade100,

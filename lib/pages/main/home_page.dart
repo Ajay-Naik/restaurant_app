@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/models/cart.dart';
+import 'package:restaurant_app/themes/dark_mode.dart';
+import 'package:restaurant_app/themes/light_mode.dart';
 import 'package:restaurant_app/pages/cart/cart_page.dart';
 import 'package:restaurant_app/pages/providers/cart_provider.dart';
 

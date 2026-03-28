@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/pages/providers/cart_provider.dart';
-import 'package:restaurant_app/pages/main/home_page.dart';
+import 'package:restaurant_app/pages/cart/success_page.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -75,7 +75,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ),
 
-            // 🔴 PLACE ORDER BUTTON
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: SizedBox(
@@ -102,8 +101,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  // 🔴 LOGIC
-void _placeOrder() async {
+void _placeOrder() {
   final cart = Provider.of<CartProvider>(context, listen: false);
 
   // validation
@@ -121,25 +119,13 @@ void _placeOrder() async {
     return;
   }
 
-  // 🔴 show confirmation
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text("Order placed successfully"),
-      duration: Duration(seconds: 2),
-    ),
-  );
-
-  // 🔴 wait (so user perceives it)
-  await Future.delayed(const Duration(seconds: 2));
-
-  // 🔴 clear cart
   cart.clearCart();
 
-  // 🔴 navigate
-  Navigator.pushAndRemoveUntil(
+  Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (_) => const HomePage()),
-    (route) => false,
+    MaterialPageRoute(
+      builder: (_) => const OrderSuccessPage(),
+    ),
   );
 }
   void _showError(String msg) {

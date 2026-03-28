@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_app/components/my_textfield.dart';
 import 'package:restaurant_app/components/my_button.dart';
+import 'package:restaurant_app/themes/dark_mode.dart';
+import 'package:restaurant_app/themes/light_mode.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
-        // child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -154,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
       //success
       Navigator.pushReplacementNamed(context, '/home');
       return;
-      // print("login successful");
+  
     } on FirebaseAuthException catch (e) {
       //handle firebase specific error
       String errorMessage;
@@ -170,9 +168,6 @@ class _LoginPageState extends State<LoginPage> {
       }
 
       showError(errorMessage);
-      // } catch (e) {
-      //   //general error like empty fields
-      //   print(e.toString());
     } finally {
       setState(() {
         isLoading = false;

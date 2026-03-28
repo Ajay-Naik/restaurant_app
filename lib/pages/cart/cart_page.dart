@@ -29,7 +29,6 @@ class CartPage extends StatelessWidget {
                   child: _buildCartList(context),
                 ),
 
-                // 🔴 LIFTED BUTTON (not stuck to bottom)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
                   child: _checkoutButton(context),
@@ -39,7 +38,6 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // CART LIST
   Widget _buildCartList(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
     final cartItems = cart.items;
@@ -52,7 +50,6 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // CART ITEM
   Widget _cartItem(
       BuildContext context, CartProvider cart, CartItem item, int index) {
     return Container(
@@ -98,7 +95,6 @@ class CartPage extends StatelessWidget {
             ),
           ),
 
-          // DELETE
           IconButton(
             icon: const Icon(Icons.delete_outline, color: Colors.red),
             onPressed: () {
@@ -110,7 +106,6 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // QTY BUTTON
   Widget _qtyButton(String text, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
@@ -125,7 +120,6 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // CHECKOUT BUTTON
   Widget _checkoutButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,

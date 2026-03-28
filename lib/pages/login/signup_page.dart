@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_app/components/my_textfield.dart';
 import 'package:restaurant_app/components/my_button.dart';
+import 'package:restaurant_app/themes/dark_mode.dart';
+import 'package:restaurant_app/themes/light_mode.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -36,7 +35,6 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
-        // child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -164,20 +162,18 @@ class _SignupPageState extends State<SignupPage> {
       //sign up with firebase
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      // 2. TRY storing extra data (secondary step)
       try {
         await FirebaseFirestore.instance
             .collection('users')
             .doc(userCredential.user!.uid)
             .set({'name': name, 'email': email, 'createdAt': Timestamp.now()});
       } catch (e) {
-        // Firestore failed → log but don't block user
+        // Firestore failed
         debugPrint("Firestore error: $e");
       }
 
       //success
       Navigator.pushReplacementNamed(context, '/home');
-      // print("signup successful");
     } on FirebaseAuthException catch (e) {
       //handle firebase specific error
       String errorMessage;
@@ -194,9 +190,6 @@ class _SignupPageState extends State<SignupPage> {
 
       showError(errorMessage);
 
-      // } catch (e) {
-      //   //general error like empty fields
-      //   print(e.toString());
     } finally {
       setState(() {
         isLoading = false;
