@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/models/cart.dart';
 import 'package:restaurant_app/pages/providers/cart_provider.dart';
+import 'package:restaurant_app/pages/cart/checkout_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -24,8 +25,15 @@ class CartPage extends StatelessWidget {
           ? const Center(child: Text("Your cart is empty"))
           : Column(
               children: [
-                Expanded(child: _buildCartList(context)),
-                _checkoutButton(),
+                Expanded(
+                  child: _buildCartList(context),
+                ),
+
+                // 🔴 LIFTED BUTTON (not stuck to bottom)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
+                  child: _checkoutButton(context),
+                ),
               ],
             ),
     );
@@ -102,7 +110,7 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // BUTTON
+  // QTY BUTTON
   Widget _qtyButton(String text, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
@@ -118,13 +126,30 @@ class CartPage extends StatelessWidget {
   }
 
   // CHECKOUT BUTTON
-  Widget _checkoutButton() {
-    return Container(
-      padding: const EdgeInsets.all(16),
+  Widget _checkoutButton(BuildContext context) {
+    return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
-        child: const Text("Go to checkout"),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          backgroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 4,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const CheckoutPage(),
+            ),
+          );
+        },
+        child: const Text(
+          "Proceed to Checkout",
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
       ),
     );
   }

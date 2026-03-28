@@ -246,7 +246,6 @@ class _HomePageState extends State<HomePage> {
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
       ),
-
       child: Row(
         children: [
           // TEXT
@@ -266,7 +265,7 @@ class _HomePageState extends State<HomePage> {
 
           const SizedBox(width: 12),
 
-          // IMAGE + BUTTON STACK
+          // IMAGE + BUTTON
           Stack(
             children: [
               ClipRRect(
@@ -279,7 +278,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              // 🔴 SMALL FLOATING BUTTON
               Positioned(
                 bottom: 6,
                 right: 6,
@@ -292,6 +290,14 @@ class _HomePageState extends State<HomePage> {
 
                     cart.addToCart(
                       CartItem(name: title, price: price, image: image),
+                    );
+
+                    // feedback
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("$title added to cart"),
+                        duration: const Duration(milliseconds: 800),
+                      ),
                     );
                   },
                   child: Container(
