@@ -1,4 +1,4 @@
-package com.ajay_naik.restaurant_app
+package com.example.restaurant_app
 
 import io.flutter.embedding.android.FlutterActivity
 
